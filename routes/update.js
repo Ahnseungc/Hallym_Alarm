@@ -17,9 +17,15 @@ router.post("/", (req, res) => {
 
   db.query(sqlQuery_s, (err, result) => {
     res.send("db저장 성공");
+    res.json({
+      success: true,
+    });
     if (err) {
       console.log(err);
       res.send("유저 정보 업데이트 실패");
+      res.json({
+        success: true,
+      });
     }
   });
 });

@@ -20,25 +20,14 @@ router.post("/", (req, res) => {
   const sqlQuery = `INSERT INTO user_info_main_final3(fcmtoken, keywords) VALUES("${fcmtoken}","${keywords}");`;
 
   db.query(sqlQuery, (err, result) => {
-    res.send("db저장 성공");
+    res.json({
+      success: true,
+    });
     if (err) {
       console.log(err);
-      res.send("유저 정보 업데이트 실패");
-    }
-  });
-});
-
-router.post("/update", (req, res) => {
-  const fcmtoken = req.body.fcmToken;
-  const keywords_s = req.body.keywords;
-  console.log(keywords_s);
-  // const sqlQuery = `update user_info_main_final3 keywords set keywords =`${keywords_s}``;
-
-  db.query(sqlQuery, (err, result) => {
-    res.send("db저장 성공");
-    if (err) {
-      console.log(err);
-      res.send("유저 정보 업데이트 실패");
+      res.json({
+        success: false,
+      });
     }
   });
 });
